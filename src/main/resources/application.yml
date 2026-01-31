@@ -3,7 +3,7 @@ server:
 
 spring:
     datasource:
-        url: mysql://root:SkqcbWFNsdcbqycYsocbwjLXRVlXqVxC@mysql.railway.internal:3306/railway
+        url: jdbc:mysql://root:SkqcbWFNsdcbqycYsocbwjLXRVlXqVxC@mysql.railway.internal:3306/railway
         username: root
         password: SkqcbWFNsdcbqycYsocbwjLXRVlXqVxC
         driver-class-name: com.mysql.cj.jdbc.Driver
