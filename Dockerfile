@@ -1,20 +1,18 @@
-# Stage 1: Build
-# Nâng cấp lên Maven với JDK 21
+# Stage 1: Build (Giữ nguyên vì đã thành công)
 FROM maven:3-eclipse-temurin-21-alpine AS build
 WORKDIR /app
-
-# Copy mã nguồn và build file .war
 COPY . .
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run
-# Nâng cấp lên JRE/JDK 21
 FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
-# Copy file .war (Hãy đảm bảo tên file DrComputer-0.0.1-SNAPSHOT.war là chính xác)
-COPY --from=build /app/target/DrComputer-0.0.1-SNAPSHOT.war drcomputer.war
+# SỬA TÊN FILE TẠI ĐÂY:
+# Thay DrComputer...war thành uniclub-0.0.1-SNAPSHOT.jar cho đúng với thực tế build
+COPY --from=build /app/target/uniclub-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","drcomputer.war"]
+# Chạy file jar
+ENTRYPOINT ["java","-jar","app.jar"]
